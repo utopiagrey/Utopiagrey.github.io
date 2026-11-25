@@ -3,182 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>中国 39 所 985 高校全景</title>
+<title>中国39所985高校全景图</title>
 <style>
-:root{
-  --bg:#0b1120; --card:#151f35; --card2:#1b2743; --line:#2a3a5c;
-  --txt:#e6edf7; --sub:#93a4c3; --acc:#4da3ff; --acc2:#7c6bff; --gold:#fbbf24;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
-  background:radial-gradient(1200px 600px at 50% -10%,#1a2748 0%,var(--bg) 60%);
-  color:var(--txt);line-height:1.65;min-height:100vh;padding:0 0 60px;
-}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  :root{
+    --bg:#0f172a; --card:#1e293b; --card2:#243449; --line:#334155;
+    --txt:#e2e8f0; --sub:#94a3b8; --accent:#38bdf8; --gold:#fbbf24;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+       background:var(--bg);color:var(--txt);line-height:1.6;padding:24px 16px 60px}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{text-align:center;padding:28px 0 20px}
+  header h1{font-size:28px;letter-spacing:1px}
+  header p{color:var(--sub);margin-top:8px;font-size:14px}
+  a{color:inherit;text-decoration:none}
 
-/* ---------- 头部 ---------- */
-header{text-align:center;padding:54px 0 30px}
-.badge{
-  display:inline-block;font-size:12px;letter-spacing:2px;color:var(--gold);
-  border:1px solid rgba(251,191,36,.35);background:rgba(251,191,36,.08);
-  padding:5px 14px;border-radius:999px;margin-bottom:18px;
-}
-header h1{
-  font-size:clamp(26px,4.4vw,42px);font-weight:800;letter-spacing:1px;
-  background:linear-gradient(92deg,#fff 10%,var(--acc) 55%,var(--acc2) 95%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-}
-header p{color:var(--sub);font-size:14px;margin-top:12px}
+  /* 关键数字 */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+  @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+  .stat b{display:block;font-size:24px;color:var(--accent)}
+  .stat span{font-size:12px;color:var(--sub)}
 
-/* ---------- 统计数字 ---------- */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:34px 0 26px}
-@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{
-  background:var(--card);border:1px solid var(--line);border-radius:14px;
-  padding:18px 14px;text-align:center;
-}
-.stat b{display:block;font-size:30px;font-weight:800;color:var(--acc);line-height:1.2}
-.stat span{font-size:12.5px;color:var(--sub);letter-spacing:.5px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card h2{font-size:16px;margin-bottom:14px;color:var(--accent)}
+  .bars{display:flex;align-items:flex-end;gap:5px;height:180px}
+  .bar-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer}
+  .bar{width:100%;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--accent),#2563eb);transition:.2s}
+  .bar-item:hover .bar{background:linear-gradient(180deg,var(--gold),#d97706)}
+  .bar-item span{font-size:10px;color:var(--sub);white-space:nowrap}
+  .bar-item i{font-size:10px;font-style:normal;color:var(--txt)}
+  .donut-wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .donut{width:150px;height:150px;border-radius:50%;flex:none}
+  .legend{font-size:12px;color:var(--sub)}
+  .legend div{display:flex;align-items:center;gap:6px;margin:3px 0}
+  .legend em{width:9px;height:9px;border-radius:2px;flex:none}
 
-/* ---------- 通用卡片 ---------- */
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:22px}
-.card h2{
-  font-size:16px;margin-bottom:18px;display:flex;align-items:center;gap:9px;
-}
-.card h2::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(var(--acc),var(--acc2))}
-.card h2 em{font-style:normal;font-size:12px;color:var(--sub);font-weight:400;margin-left:auto}
+  /* 筛选 */
+  .filters{display:flex;gap:7px;overflow-x:auto;padding:10px 2px;margin-bottom:14px;
+           border-bottom:1px solid var(--line)}
+  .fbtn{flex:none;padding:5px 11px;border:1px solid var(--line);background:var(--card2);
+        border-radius:20px;font-size:13px;color:var(--sub);cursor:pointer;transition:.15s;white-space:nowrap}
+  .fbtn:hover{border-color:var(--accent);color:var(--txt)}
+  .fbtn.on{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:600}
+  .fbtn b{opacity:.75;margin-left:3px;font-weight:400}
 
-/* ---------- 柱状图（省份分布） ---------- */
-.bars{display:flex;align-items:flex-end;gap:8px;height:200px;overflow-x:auto;padding-bottom:2px}
-.bar{flex:1;min-width:34px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:6px}
-.bar .fill{
-  width:100%;max-width:38px;border-radius:7px 7px 0 0;
-  background:linear-gradient(180deg,var(--acc),rgba(77,163,255,.18));
-  position:relative;transition:.25s;
-}
-.bar:hover .fill{background:linear-gradient(180deg,var(--gold),rgba(251,191,36,.2))}
-.bar .num{font-size:12px;font-weight:700;color:var(--txt)}
-.bar .lbl{font-size:11.5px;color:var(--sub);white-space:nowrap}
+  /* 高校卡片 */
+  .u-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+  .u{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);
+     border-radius:12px;padding:12px;cursor:pointer;transition:.18s}
+  .u:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .logo{width:42px;height:42px;border-radius:10px;flex:none;display:flex;align-items:center;
+        justify-content:center;font-size:14px;font-weight:700;color:#0f172a}
+  .u-meta{min-width:0}
+  .u-name{font-size:14px;font-weight:600}
+  .u-sub{font-size:11px;color:var(--sub);margin-top:2px}
+  .crown{color:var(--gold);font-size:10px;margin-left:3px}
 
-/* ---------- 环形图（区域分布） ---------- */
-.donut-wrap{display:flex;align-items:center;gap:30px;flex-wrap:wrap}
-.donut{
-  width:172px;height:172px;border-radius:50%;flex:none;position:relative;
-  background:conic-gradient(
-    var(--acc)      0 28.2%,
-    var(--acc2)     28.2% 51.3%,
-    var(--gold)     51.3% 69.2%,
-    #34d399         69.2% 82.1%,
-    #f472b6         82.1% 92.3%,
-    #fb923c         92.3% 100%
-  );
-}
-.donut::after{
-  content:"39";position:absolute;inset:26px;border-radius:50%;
-  background:var(--card);display:flex;align-items:center;justify-content:center;
-  font-size:30px;font-weight:800;
-}
-.legend{flex:1;min-width:210px;display:flex;flex-direction:column;gap:10px}
-.lg{display:flex;align-items:center;gap:10px;font-size:13.5px}
-.lg i{width:11px;height:11px;border-radius:3px;flex:none}
-.lg b{margin-left:auto;color:var(--sub);font-weight:600}
-
-/* ---------- 筛选 ---------- */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.fbtn{
-  white-space:nowrap;
-  font:inherit;font-size:13px;cursor:pointer;color:var(--sub);
-  background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;transition:.2s;
-}
-.fbtn:hover{color:var(--txt);border-color:var(--acc)}
-.fbtn.on{background:var(--acc);color:#08101f;border-color:var(--acc);font-weight:700}
-
-/* ---------- 高校网格 ---------- */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:13px}
-.u{
-  background:var(--card2);border:1px solid var(--line);border-radius:14px;
-  padding:16px 13px;display:flex;flex-direction:column;align-items:center;gap:10px;
-  text-align:center;transition:.22s;position:relative;overflow:hidden;
-}
-.u::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--c,var(--acc));opacity:.85}
-.u:hover{transform:translateY(-4px);border-color:var(--c,var(--acc));box-shadow:0 10px 26px rgba(0,0,0,.34)}
-.logo{
-  width:52px;height:52px;border-radius:14px;flex:none;
-  display:flex;align-items:center;justify-content:center;
-  font-size:21px;font-weight:800;color:#fff;letter-spacing:-1px;
-  background:linear-gradient(140deg,var(--c,var(--acc)),color-mix(in srgb,var(--c,var(--acc)) 55%,#000));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.28);
-}
-.u .name{font-size:14px;font-weight:700;line-height:1.35}
-.u .meta{font-size:11.5px;color:var(--sub)}
-.u .tags{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
-.tag{font-size:10px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
-.tag.c9{color:var(--gold);border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.1)}
-
-/* ---------- 页脚 ---------- */
-footer{color:var(--sub);font-size:12.5px;text-align:center;padding:26px 20px 0;line-height:1.9}
-footer a{color:var(--acc);text-decoration:none}
-footer a:hover{text-decoration:underline}
-.empty{color:var(--sub);font-size:13.5px;text-align:center;padding:16px}
-.fbtn b{opacity:.55;font-weight:600;margin-left:2px}
-.fbtn.on b{opacity:.85}
-.bar{cursor:pointer;transition:.2s}
-.bar:hover .fill{filter:brightness(1.25)}
-.filters-wrap{overflow-x:auto;padding-bottom:4px;margin-bottom:14px;
-  scrollbar-width:thin;scrollbar-color:#334155 transparent}
-.filters-wrap::-webkit-scrollbar{height:6px}
-.filters-wrap::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+  /* 详情页 */
+  #detail{display:none}
+  .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--sub);
+        border:1px solid var(--line);padding:6px 12px;border-radius:20px;margin-bottom:20px}
+  .back:hover{border-color:var(--accent);color:var(--txt)}
+  .hero{display:flex;align-items:center;gap:18px;background:var(--card);
+        border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px;flex-wrap:wrap}
+  .hero .logo{width:64px;height:64px;font-size:20px;border-radius:14px}
+  .hero h1{font-size:24px;letter-spacing:.5px}
+  .hero .tags{margin-top:8px;display:flex;gap:7px;flex-wrap:wrap}
+  .tag{font-size:11px;padding:2px 9px;border:1px solid var(--line);border-radius:12px;color:var(--sub)}
+  .tag.c9{border-color:var(--gold);color:var(--gold)}
+  .links{display:grid;gap:11px}
+  .lk{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);
+      border-radius:12px;padding:15px 16px;transition:.18s}
+  .lk:hover{border-color:var(--accent);background:var(--card2);transform:translateX(3px)}
+  .lk-ic{width:38px;height:38px;border-radius:10px;flex:none;display:flex;align-items:center;
+         justify-content:center;background:var(--card2)}
+  .lk-ic svg{width:19px;height:19px;fill:none;stroke:var(--accent);stroke-width:1.8;
+             stroke-linecap:round;stroke-linejoin:round}
+  .lk-txt{flex:1;min-width:0}
+  .lk-t{font-size:15px;font-weight:600}
+  .lk-u{font-size:11px;color:var(--sub);margin-top:2px;word-break:break-all}
+  .lk-arw{color:var(--sub);font-size:16px}
+  .note{margin-top:18px;font-size:12px;color:var(--sub);text-align:center}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header>
-    <div class="badge">985 工程 · 39 所</div>
-    <h1>中国 985 高校全景图</h1>
-    <p>名单依据教育部「985 工程」学校名单（39 所，不再新增）· 地区按主校区所在地计</p>
-  </header>
+  <!-- ===== 首页 ===== -->
+  <div id="home">
+    <header>
+      <h1>中国 39 所 985 高校全景图</h1>
+      <p>名单依据教育部「985工程」学校名单 · 共 39 所 · 点击任意高校查看官网入口</p>
+    </header>
 
-  <div class="stats">
-    <div class="stat"><b>39</b><span>985 高校总数</span></div>
-    <div class="stat"><b>19</b><span>覆盖省级地区</span></div>
-    <div class="stat"><b>8</b><span>北京（最集中）</span></div>
-    <div class="stat"><b>9</b><span>C9 联盟高校</span></div>
+    <div class="stats" id="stats"></div>
+
+    <div class="grid2">
+      <div class="card">
+        <h2>省级分布（点击柱子筛选）</h2>
+        <div class="bars" id="bars"></div>
+      </div>
+      <div class="card">
+        <h2>六大区域占比</h2>
+        <div class="donut-wrap">
+          <div class="donut" id="donut"></div>
+          <div class="legend" id="legend"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filters" id="filters"></div>
+    <div class="u-grid" id="grid"></div>
+    <p class="note">数据来源：教育部「985工程」学校名单；网址为各校官方域名，如有调整以学校公告为准。</p>
   </div>
 
-  <!-- 省份分布柱状图 -->
-  <section class="card">
-    <h2>省级分布 <em>按高校数量排序</em></h2>
-    <div class="bars" id="bars"></div>
-  </section>
-
-  <!-- 区域分布环形图 -->
-  <section class="card">
-    <h2>区域分布 <em>华北大区含北京、天津</em></h2>
-    <div class="donut-wrap">
-      <div class="donut" role="img" aria-label="区域分布环形图"></div>
-      <div class="legend" id="legend"></div>
+  <!-- ===== 学校详情页 ===== -->
+  <div id="detail">
+    <a class="back" href="#/">← 返回全部高校</a>
+    <div class="hero">
+      <div class="logo" id="d-logo"></div>
+      <div>
+        <h1 id="d-name"></h1>
+        <div class="tags" id="d-tags"></div>
+      </div>
     </div>
-  </section>
+    <div class="links" id="d-links"></div>
+    <p class="note">链接为跳转至对应官方网站；各站域名若变更，请以学校公告为准。</p>
+  </div>
 
-  <!-- 高校名单 -->
-  <section class="card">
-    <h2>高校名单 · <span id="ptitle">全部 39 所</span> <em>点按钮或点柱状图都可筛选</em></h2>
-    <div class="filters-wrap"><div class="filters" id="filters"></div></div>
-    <div class="grid" id="grid"></div>
-    <div class="empty" id="empty" hidden>该地区暂无筛选结果</div>
-  </section>
-
-  <footer>
-    数据来源：<a href="https://www.moe.gov.cn/srcsite/A22/s7065/200612/t20061206_128833.html" target="_blank" rel="noopener">教育部「985 工程」学校名单</a><br>
-    985 为历史工程标签，现行建设体系为「双一流」。国防科技大学本部位于长沙，计入湖南。<br>
-    图标为校名首字生成的替代标识，非官方校徽；如需正式校徽请替换 <code>.logo</code> 区块为各校官网授权图片。
-  </footer>
 </div>
 
 <script>
-/* ============ 数据：39 所 985 ============ */
+/* ============ 数据：39 所 985（域名统一在此维护） ============
+   字段：[校名, 省份, 类型, 徽标简称, 主域名]
+   三类网址规则：https://www.{dom}/  ·  https://graduate.{dom}/  ·  https://yz.{dom}/
+   个别学校有专属域名，用 url 字段单独覆盖（见 OVERRIDE） */
 const C9 = ["北京大学","清华大学","复旦大学","上海交通大学","浙江大学","南京大学","中国科学技术大学","哈尔滨工业大学","西安交通大学"];
 
 const REGIONS = {
@@ -191,109 +153,203 @@ const REGIONS = {
   "西北":{color:"#22d3ee", provinces:["陕西","甘肃"]}
 };
 
-const SCHOOLS = [
-  ["北京大学","北京","综合"],["清华大学","北京","理工"],["中国人民大学","北京","人文社科"],
-  ["北京航空航天大学","北京","理工"],["北京理工大学","北京","理工"],["中国农业大学","北京","农林"],
-  ["北京师范大学","北京","师范"],["中央民族大学","北京","民族"],
-  ["南开大学","天津","综合"],["天津大学","天津","理工"],
-  ["大连理工大学","辽宁","理工"],["东北大学","辽宁","理工"],["吉林大学","吉林","综合"],["哈尔滨工业大学","黑龙江","理工"],
-  ["复旦大学","上海","综合"],["上海交通大学","上海","综合"],["同济大学","上海","理工"],["华东师范大学","上海","师范"],
-  ["南京大学","江苏","综合"],["东南大学","江苏","理工"],["浙江大学","浙江","综合"],
-  ["中国科学技术大学","安徽","理工"],["厦门大学","福建","综合"],["山东大学","山东","综合"],["中国海洋大学","山东","海洋"],
-  ["武汉大学","湖北","综合"],["华中科技大学","湖北","理工"],
-  ["中南大学","湖南","综合"],["湖南大学","湖南","综合"],["国防科技大学","湖南","军事"],
-  ["中山大学","广东","综合"],["华南理工大学","广东","理工"],
-  ["四川大学","四川","综合"],["电子科技大学","四川","理工"],["重庆大学","重庆","综合"],
-  ["西安交通大学","陕西","综合"],["西北工业大学","陕西","理工"],["西北农林科技大学","陕西","农林"],
-  ["兰州大学","甘肃","综合"]
-].map(([name,prov,type])=>({name,prov,type,region:Object.keys(REGIONS).find(r=>REGIONS[r].provinces.includes(prov))}));
+const RAW = [
+  ["北京大学","北京","综合","北大","pku.edu.cn"],
+  ["清华大学","北京","理工","清华","tsinghua.edu.cn"],
+  ["中国人民大学","北京","人文社科","人大","ruc.edu.cn"],
+  ["北京航空航天大学","北京","理工","北航","buaa.edu.cn"],
+  ["北京理工大学","北京","理工","北理","bit.edu.cn"],
+  ["中国农业大学","北京","农林","中农","cau.edu.cn"],
+  ["北京师范大学","北京","师范","北师","bnu.edu.cn"],
+  ["中央民族大学","北京","民族","民大","muc.edu.cn"],
+  ["南开大学","天津","综合","南开","nankai.edu.cn"],
+  ["天津大学","天津","理工","天大","tju.edu.cn"],
+  ["大连理工大学","辽宁","理工","大工","dlut.edu.cn"],
+  ["东北大学","辽宁","理工","东大","neu.edu.cn"],
+  ["吉林大学","吉林","综合","吉大","jlu.edu.cn"],
+  ["哈尔滨工业大学","黑龙江","理工","哈工大","hit.edu.cn"],
+  ["复旦大学","上海","综合","复旦","fudan.edu.cn"],
+  ["上海交通大学","上海","综合","上交","sjtu.edu.cn"],
+  ["同济大学","上海","理工","同济","tongji.edu.cn"],
+  ["华东师范大学","上海","师范","华师","ecnu.edu.cn"],
+  ["南京大学","江苏","综合","南大","nju.edu.cn"],
+  ["东南大学","江苏","理工","东大","seu.edu.cn"],
+  ["浙江大学","浙江","综合","浙大","zju.edu.cn"],
+  ["中国科学技术大学","安徽","理工","中科大","ustc.edu.cn"],
+  ["厦门大学","福建","综合","厦大","xmu.edu.cn"],
+  ["山东大学","山东","综合","山大","sdu.edu.cn"],
+  ["中国海洋大学","山东","海洋","海大","ouc.edu.cn"],
+  ["武汉大学","湖北","综合","武大","whu.edu.cn"],
+  ["华中科技大学","湖北","理工","华科","hust.edu.cn"],
+  ["中南大学","湖南","综合","中南","csu.edu.cn"],
+  ["湖南大学","湖南","综合","湖大","hnu.edu.cn"],
+  ["国防科技大学","湖南","军事","国防科大","nudt.edu.cn"],
+  ["中山大学","广东","综合","中大","sysu.edu.cn"],
+  ["华南理工大学","广东","理工","华工","scut.edu.cn"],
+  ["四川大学","四川","综合","川大","scu.edu.cn"],
+  ["电子科技大学","四川","理工","成电","uestc.edu.cn"],
+  ["重庆大学","重庆","理工","重大","cqu.edu.cn"],
+  ["西安交通大学","陕西","综合","西交","xjtu.edu.cn"],
+  ["西北工业大学","陕西","理工","西工大","nwpu.edu.cn"],
+  ["西北农林科技大学","陕西","农林","西农","nwsuaf.edu.cn"],
+  ["兰州大学","甘肃","综合","兰大","lzu.edu.cn"]
+];
 
-/* 取校名首字作为图标文字（去掉「中国/中央」等前缀取实义词） */
-function initial(n){
-  const m={"北京大学":"北大","清华大学":"清华","中国人民大学":"人大","北京航空航天大学":"北航",
-    "北京理工大学":"北理","中国农业大学":"中农","北京师范大学":"北师","中央民族大学":"民大",
-    "南开大学":"南开","天津大学":"天大","大连理工大学":"大工","东北大学":"东大","吉林大学":"吉大",
-    "哈尔滨工业大学":"哈工","复旦大学":"复旦","上海交通大学":"上交","同济大学":"同济",
-    "华东师范大学":"华师","南京大学":"南大","东南大学":"东大","浙江大学":"浙大",
-    "中国科学技术大学":"中科","厦门大学":"厦大","山东大学":"山大","中国海洋大学":"海大",
-    "武汉大学":"武大","华中科技大学":"华科","中南大学":"中南","湖南大学":"湖大",
-    "国防科技大学":"国防","中山大学":"中大","华南理工大学":"华工","四川大学":"川大",
-    "电子科技大学":"电子","重庆大学":"重大","西安交通大学":"西交","西北工业大学":"西工",
-    "西北农林科技大学":"西农","兰州大学":"兰大"};
-  return m[n] || n.slice(0,2);
-}
+/* 个别学校研究生院/研招网不用 graduate./yz. 通用子域，在此单独指定 */
+const OVERRIDE = {
+  "北京大学":    {gs:"https://grad.pku.edu.cn",  yz:"https://admission.pku.edu.cn"},
+  "中国人民大学":{gs:"http://pgs.ruc.edu.cn",    yz:"http://pgs.ruc.edu.cn"},
+  "清华大学":    {gs:"https://yz.tsinghua.edu.cn",yz:"https://yz.tsinghua.edu.cn"},
+  "北京理工大学":{gs:"https://grd.bit.edu.cn",   yz:"https://grd.bit.edu.cn/zsgz/zsxx/index.htm"},
+  "中国农业大学":{yz:"https://yz.cau.edu.cn"},
+  "中央民族大学":{yz:"https://grs.muc.edu.cn"},
+  "天津大学":    {yz:"http://yzb.tju.edu.cn"},
+  "哈尔滨工业大学":{yz:"https://yzb.hit.edu.cn"},
+  "上海交通大学":{yz:"https://yzb.sjtu.edu.cn"},
+  "华东师范大学":{yz:"https://yjsy.ecnu.edu.cn"},
+  "东南大学":    {yz:"https://yzb.seu.edu.cn"},
+  "中国科学技术大学":{gs:"https://grad.ustc.edu.cn", yz:"https://yz.ustc.edu.cn"},
+  "山东大学":    {yz:"https://www.yz.sdu.edu.cn"},
+  "中国海洋大学":{yz:"http://yz.ouc.edu.cn"},
+  "湖南大学":    {yz:"https://yz.hnu.edu.cn"},
+  "国防科技大学":{gs:"https://yjszs.nudt.edu.cn", yz:"https://yjszs.nudt.edu.cn"},
+  "中山大学":    {gs:"https://graduate.sysu.edu.cn", yz:"https://graduate.sysu.edu.cn"},
+  "西北工业大学":{yz:"https://yzb.nwpu.edu.cn"},
+  "西北农林科技大学":{yz:"https://yz.nwsuaf.edu.cn"}
+};
 
-/* ============ 渲染：省级柱状图 ============ */
-const provCount = SCHOOLS.reduce((a,s)=>(a[s.prov]=(a[s.prov]||0)+1,a),{});
-const provSorted = Object.entries(provCount).sort((a,b)=>b[1]-a[1]);
-const maxN = provSorted[0][1];
-document.getElementById("bars").innerHTML = provSorted.map(([p,n])=>`
-  <div class="bar" data-p="${p}" role="button" tabindex="0" title="点击筛选：${p}（${n} 所）">
-    <span class="num">${n}</span>
-    <div class="fill" style="height:${n/maxN*100}%"></div>
-    <span class="lbl">${p}</span>
-  </div>`).join("");
-
-/* ============ 渲染：区域环形图 ============ */
-const TOTAL = SCHOOLS.length;
-const regionCount = SCHOOLS.reduce((a,s)=>(a[s.region]=(a[s.region]||0)+1,a),{});
-let acc=0;
-const segs=[];
-document.getElementById("legend").innerHTML = Object.entries(REGIONS).map(([r,{color,provinces}])=>{
-  const n = regionCount[r]||0;
-  const from = acc/TOTAL*100; acc+=n;
-  const to = acc/TOTAL*100;
-  segs.push(`${color} ${from}% ${to}%`);
-  return `<div class="lg"><i style="background:${color}"></i>${r}
-    <b>${n} 所 · ${(n/TOTAL*100).toFixed(1)}%</b></div>`;
-}).join("");
-document.querySelector(".donut").style.background = `conic-gradient(${segs.join(",")})`;
-
-/* ============ 渲染：筛选按钮 + 卡片 ============ */
-const grid=document.getElementById("grid"), empty=document.getElementById("empty");
-const filters=document.getElementById("filters");
-/* 省份顺序：与柱状图一致，按高校数量降序 */
-const PROVINCES = provSorted.map(([p])=>p);
-
-filters.innerHTML =
-  `<button class="fbtn on" data-p="__all">全部 <b>39</b></button>`
-  + PROVINCES.map(p=>`<button class="fbtn" data-p="${p}">${p} <b>${provCount[p]}</b></button>`).join("");
-
-const title=document.getElementById("ptitle");
-
-function paint(p){
-  const list = p==="__all" ? SCHOOLS : SCHOOLS.filter(s=>s.prov===p);
-  title.textContent = p==="__all" ? "全部 39 所" : `${p} · ${list.length} 所`;
-  grid.innerHTML = list.map(s=>`
-    <div class="u" style="--c:${REGIONS[s.region].color}">
-      <div class="logo">${initial(s.name)}</div>
-      <div class="name">${s.name}</div>
-      <div class="meta">${s.prov} · ${s.region} · ${s.type}</div>
-      <div class="tags"><span class="tag">${s.type}</span>
-        ${C9.includes(s.name)?'<span class="tag c9">C9</span>':""}</div>
-    </div>`).join("");
-  empty.hidden = list.length>0;
-}
-paint("__all");
-
-function pick(btn){
-  filters.querySelectorAll(".fbtn").forEach(x=>x.classList.remove("on"));
-  btn.classList.add("on");
-  paint(btn.dataset.p);
-  document.getElementById("list").scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-filters.addEventListener("click",e=>{
-  const b=e.target.closest(".fbtn"); if(b) pick(b);
+const SCHOOLS = RAW.map(function(x){
+  const a=x[0], prov=x[1], type=x[2], abbr=x[3], dom=x[4];
+  let region="";
+  for(const k in REGIONS){ if(REGIONS[k].provinces.indexOf(prov)>-1){ region=k; break; } }
+  const ov = OVERRIDE[a] || {};
+  return {
+    name:a, province:prov, type:type, abbr:abbr, dom:dom, region:region,
+    color:REGIONS[region].color, c9:(C9.indexOf(a)>-1),
+    home:"https://www."+dom+"/",
+    gs: ov.gs || ("https://graduate."+dom+"/"),
+    yz: ov.yz || ("https://yz."+dom+"/")
+  };
 });
 
-/* 点击柱状图的柱子 = 直接筛选该省 */
-document.getElementById("bars").addEventListener("click",e=>{
-  const bar=e.target.closest(".bar"); if(!bar) return;
-  const p=bar.dataset.p;
-  const btn=filters.querySelector(`.fbtn[data-p="${p}"]`);
-  if(btn) pick(btn);
-});
+/* ============ 图标 ============ */
+const IC = {
+  home:'<svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg>',
+  cap: '<svg viewBox="0 0 24 24"><path d="M2.5 8.5 12 4l9.5 4.5L12 13 2.5 8.5Z"/><path d="M6.5 10.5v5c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-5"/><path d="M21 8.5v5"/></svg>',
+  doc: '<svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/><path d="M8.5 13h7M8.5 16.5h4.5"/></svg>'
+};
+const ICON_COLOR = {home:"#38bdf8", gs:"#a78bfa", yz:"#34d399"};
+
+/* ============ 首页渲染 ============ */
+const $ = id => document.getElementById(id);
+const byProv = {};
+SCHOOLS.forEach(s => { (byProv[s.province] = byProv[s.province] || []).push(s); });
+const provOrder = Object.keys(byProv).sort((a,b)=>byProv[b].length - byProv[a].length || a.localeCompare(b,"zh"));
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function cardHTML(s){
+  return '<a class="u" href="#/'+encodeURIComponent(s.name)+'">'
+       + '<div class="logo" style="background:linear-gradient(135deg,'+s.color+',#ffffff33)">'+esc(s.abbr)+'</div>'
+       + '<div class="u-meta"><div class="u-name">'+esc(s.name)+(s.c9?'<span class="crown">★</span>':'')+'</div>'
+       + '<div class="u-sub">'+esc(s.province)+' · '+esc(s.region)+' · '+esc(s.type)+'</div></div></a>';
+}
+
+function renderHome(){
+  $("stats").innerHTML =
+      '<div class="stat"><b>39</b><span>985 高校</span></div>'
+    + '<div class="stat"><b>'+provOrder.length+'</b><span>省级地区</span></div>'
+    + '<div class="stat"><b>'+byProv["北京"].length+'</b><span>北京最多</span></div>'
+    + '<div class="stat"><b>9</b><span>C9 联盟</span></div>';
+
+  const max = byProv[provOrder[0]].length;
+  $("bars").innerHTML = provOrder.map(p =>
+      '<div class="bar-item" data-prov="'+esc(p)+'" title="点击筛选：'+esc(p)+'（'+byProv[p].length+' 所）">'
+    + '<i>'+byProv[p].length+'</i>'
+    + '<div class="bar" style="height:'+Math.round(byProv[p].length/max*130+8)+'px"></div>'
+    + '<span>'+esc(p)+'</span></div>').join("");
+
+  const reg = {};
+  SCHOOLS.forEach(s => reg[s.region] = (reg[s.region]||0)+1);
+  let acc = 0, segs = [];
+  const total = SCHOOLS.length;
+  Object.keys(REGIONS).forEach(k => {
+    const n = reg[k]||0, from = acc/total*360; acc += n;
+    segs.push(REGIONS[k].color+" "+from+"deg "+(acc/total*360)+"deg");
+  });
+  $("donut").style.background = "conic-gradient("+segs.join(",")+")";
+  $("legend").innerHTML = Object.keys(REGIONS).map(k =>
+      '<div><em style="background:'+REGIONS[k].color+'"></em>'+k+' '+(reg[k]||0)+' 所 · '
+    + Math.round((reg[k]||0)/total*100)+'%</div>').join("");
+
+  $("filters").innerHTML = '<button class="fbtn on" data-prov="__all">全部<b>39</b></button>'
+    + provOrder.map(p => '<button class="fbtn" data-prov="'+esc(p)+'">'+esc(p)+'<b>'+byProv[p].length+'</b></button>').join("");
+
+  $("filters").onclick = e => {
+    const b = e.target.closest(".fbtn"); if(!b) return;
+    setFilter(b.dataset.prov);
+  };
+  $("bars").onclick = e => {
+    const it = e.target.closest(".bar-item"); if(!it) return;
+    setFilter(it.dataset.prov);
+    $("filters").scrollIntoView({behavior:"smooth", block:"center"});
+  };
+}
+
+function setFilter(prov){
+  document.querySelectorAll("#filters .fbtn").forEach(b =>
+    b.classList.toggle("on", b.dataset.prov === prov));
+  const list = prov === "__all" ? SCHOOLS : byProv[prov];
+  $("ptitle") && ($("ptitle").textContent = (prov==="__all" ? "全部" : prov) + " · " + list.length + " 所");
+  $("grid").innerHTML = list.map(cardHTML).join("");
+}
+
+/* ============ 详情页渲染 ============ */
+function renderDetail(name){
+  const s = SCHOOLS.filter(x => x.name === name)[0];
+  if(!s){ location.hash = "#/"; return null; }
+  $("d-logo").textContent = s.abbr;
+  $("d-logo").style.background = "linear-gradient(135deg,"+s.color+",#ffffff33)";
+  $("d-name").textContent = s.name;
+  $("d-tags").innerHTML =
+      '<span class="tag">'+s.province+'</span>'
+    + '<span class="tag">'+s.region+'</span>'
+    + '<span class="tag">'+s.type+'类</span>'
+    + (s.c9 ? '<span class="tag c9">★ C9 联盟</span>' : '')
+    + '<span class="tag">985 / 211 / 双一流</span>';
+  const items = [
+    {k:"home", t:"官网首页",        u:s.home},
+    {k:"gs",   t:"研究生院网站",    u:s.gs},
+    {k:"yz",   t:"研究生招生网网站", u:s.yz}
+  ];
+  $("d-links").innerHTML = items.map(i =>
+      '<a class="lk" href="'+i.u+'" target="_blank" rel="noopener">'
+    + '<div class="lk-ic" style="background:'+ICON_COLOR[i.k]+'22">'
+    + IC[i.k].replace('stroke:var(--accent)','stroke:'+ICON_COLOR[i.k])+'</div>'
+    + '<div class="lk-txt"><div class="lk-t">'+i.t+'</div><div class="lk-u">'+i.u+'</div></div>'
+    + '<div class="lk-arw">↗</div></a>').join("");
+  return s;
+}
+
+/* ============ 路由 ============ */
+function route(){
+  const h = location.hash.replace(/^#\/?/, "");
+  const name = h ? decodeURIComponent(h) : "";
+  if(name && SCHOOLS.some(x => x.name === name)){
+    $("home").style.display = "none";
+    $("detail").style.display = "block";
+    renderDetail(name);
+    window.scrollTo(0,0);
+  }else{
+    $("home").style.display = "block";
+    $("detail").style.display = "none";
+  }
+}
+
+renderHome();
+setFilter("__all");
+window.addEventListener("hashchange", route);
+route();
 </script>
 </body>
 </html>
